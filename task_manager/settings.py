@@ -31,7 +31,12 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG_ENV = os.getenv('DEBUG')
 DEBUG = DEBUG_ENV if DEBUG_ENV else True
 
-ALLOWED_HOSTS = ['webserver', '127.0.0.1',]
+ALLOWED_HOSTS = ['webserver',
+                 '127.0.0.1',
+                 '0.0.0.0',
+                 'localhost',
+                 '.railway.app'
+                ]
 
 
 # Application definition
