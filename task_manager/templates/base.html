@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% load bootstrap4 %}
     <head>
-        {% load bootstrap4 %}
-        {% bootstrap_css %}
-        {% bootstrap_javascript jquery='full' %}
-        {% load i18n %}
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>{% trans "Hexlet task manager" %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %}</title>
+        {% bootstrap_css %}
     </head>
     <body class="d-flex flex-column min-vh-100">
-        {% include "navigation.html" %}
-        <div class="container wrapper flex-grow-1">
+        <header>
+            {% include 'navigation.html' %}
+        </header>
+        <main class="container wrapper flex-grow-1">
             {% bootstrap_messages %}
             {% block content %}{% endblock %}
-        </div>
+        </main>
+        <footer>
+            {% include 'footer.html' %}
+        </footer>
+        {% bootstrap_javascript jquery='full' %}
     </body>
-    <footer>
-        {% include "footer.html" %}
-    </footer>
 </html>
