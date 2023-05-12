@@ -1,0 +1,26 @@
+[
+  {
+    "model": "statuses.status",
+    "pk": 1,
+    "fields": {
+      "name": "initiated",
+      "date_created": "2023-05-12T20:28:30.456Z"
+    }
+  },
+  {
+    "model": "statuses.status",
+    "pk": 2,
+    "fields": {
+      "name": "in progress",
+      "date_created": "2023-05-12T20:31:25.789Z"
+    }
+  },
+  {
+    "model": "statuses.status",
+    "pk": 3,
+    "fields": {
+      "name": "complete",
+      "date_created": "2023-05-12T20:33:15.123Z"
+    }
+  }
+]

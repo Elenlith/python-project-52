@@ -13,7 +13,7 @@ from task_manager.mixins import AuthRequiredMixin,\
 class UsersListView(ListView):
     template_name = "users/list.html"
     context_object_name = 'users_list'
-    
+
     def get_queryset(self):
             model = User
             return model.objects.all()
