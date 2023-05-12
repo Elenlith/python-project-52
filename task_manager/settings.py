@@ -125,7 +125,6 @@ AUTH_PASSWORD_VALIDATORS = [
   #  },
 ]
 
-
 AUTH_USER_MODEL = 'users.User'
 
 # Internationalization
@@ -158,4 +157,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOCALE_PATHS = (
     "locale",
+)
+
+FIXTURE_DIRS = (
+    os.path.join(BASE_DIR, "task_manager", "tests", "fixtures"),
 )
