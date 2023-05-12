@@ -16,12 +16,18 @@ class UserLoginView(SuccessMessageMixin, LoginView):
     template_name = 'login.html'
     form_class = AuthenticationForm
     next_page = reverse_lazy('home')
-    success_message = _('You are logged in')
     extra_context = {
         'title': _('Login'),
         'button_text': _('Enter'),
     }
+    
+    def form_valid(self, form):
+        messages.info(self.request, _('You are logged in'))
+        return super().form_valid(form)
 
+    def form_invalid(self, form):
+        messages.error(self.request, _('Please enter correct username and password. Both fields may be case sensitive'))
+        return super().form_invalid(form)
 
 class UserLogoutView(LogoutView):
     next_page = reverse_lazy('home')

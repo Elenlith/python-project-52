@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-10 12:36+0300\n"
+"POT-Creation-Date: 2023-05-12 10:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,15 +47,20 @@ msgstr "Узнать больше"
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: task_manager/templates/navigation.html:13 task_manager/users/views.py:18
+#: task_manager/templates/navigation.html:13
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/templates/navigation.html:18
+#: task_manager/templates/navigation.html:19
+#| msgid "Log In"
+msgid "Log Out"
+msgstr "Выход"
+
+#: task_manager/templates/navigation.html:23
 msgid "Log In"
 msgstr "Вход"
 
-#: task_manager/templates/navigation.html:21
+#: task_manager/templates/navigation.html:26
 msgid "Sign Up"
 msgstr "Регистрация"
 
@@ -75,11 +80,11 @@ msgstr "Полное имя"
 msgid "Creation date"
 msgstr "Дата создания"
 
-#: task_manager/templates/users/list.html:31 task_manager/users/views.py:43
+#: task_manager/templates/users/list.html:30 task_manager/users/views.py:43
 msgid "Update"
 msgstr "Изменить"
 
-#: task_manager/templates/users/list.html:33
+#: task_manager/templates/users/list.html:32
 msgid "Delete"
 msgstr "Удалить"
 
@@ -131,18 +136,25 @@ msgstr "Удаление пользователя"
 msgid "Yes, delete"
 msgstr "Да, удалить"
 
-#: task_manager/views.py:19
-msgid "You are logged in"
-msgstr "Вы залогинены"
-
-#: task_manager/views.py:21
+#: task_manager/views.py:20
 msgid "Login"
 msgstr "Вход"
 
-#: task_manager/views.py:22
+#: task_manager/views.py:21
 msgid "Enter"
 msgstr "Войти"
 
-#: task_manager/views.py:28 task_manager/views.py:31
+#: task_manager/views.py:25
+msgid "You are logged in"
+msgstr "Вы залогинены"
+
+#: task_manager/views.py:29
+msgid ""
+"Please enter correct username and password. Both fields may be case sensitive"
+msgstr ""
+"Пожалуйста, введите правильные имя пользователя и пароль. Оба поля могут "
+"быть чувствительны к регистру."
+
+#: task_manager/views.py:34 task_manager/views.py:37
 msgid "You are logged out"
 msgstr "Вы разлогинены"

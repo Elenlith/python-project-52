@@ -11,12 +11,12 @@ from task_manager.mixins import AuthRequiredMixin,\
 
 # Create your views here.
 class UsersListView(ListView):
-    model = User
     template_name = "users/list.html"
     context_object_name = 'users_list'
-    extra_context = {
-        'title': _('Users')
-    }
+    
+    def get_queryset(self):
+            model = User
+            return model.objects.all()
 
 
 class UserCreateView(SuccessMessageMixin, CreateView):
@@ -36,8 +36,8 @@ class UserUpdateView(AuthRequiredMixin, UserPermissionMixin,
     template_name = 'users/create.html'
     model = User
     form_class = UserForm
-    success_url = reverse_lazy('users')
-    permission_url = reverse_lazy('users')
+    success_url = reverse_lazy('users_list')
+    permission_url = reverse_lazy('users_list')
     extra_context = {
         'title': _('Update user'),
         'button_text': _('Update'),
@@ -50,10 +50,10 @@ class UserDeleteView(AuthRequiredMixin, UserPermissionMixin,
                      DeleteProtectionMixin, SuccessMessageMixin, DeleteView):
     template_name = 'users/delete.html'
     model = User
-    success_url = reverse_lazy('users')
+    success_url = reverse_lazy('users_list')
     success_message = _('User is successfully deleted')
     permission_message = _('You have no rights to change another user.')
-    permission_url = reverse_lazy('users')
+    permission_url = reverse_lazy('users_list')
     protected_message = _('Unable to delete a user because he is being used')
     protected_url = reverse_lazy('users')
     extra_context = {
