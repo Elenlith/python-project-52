@@ -19,7 +19,8 @@ class Delete(TransactionTestCase):
 
     def test_delete_only_himself(self):
         user1 = User.objects.all().first()
-        self.client.login(username='matroskin', password='456m')
+        user2 = User.objects.all().last()
+        self.client.force_login(user=user2)
         response = self.client.post(
             reverse(
                 'user_delete',
@@ -33,7 +34,7 @@ class Delete(TransactionTestCase):
 
     def test_delete(self):
         user1 = User.objects.all().first()
-        self.client.login(username='unclefedor', password='123f')
+        self.client.force_login(user=user1)
         response = self.client.post(
              reverse(
                  'user_delete',
@@ -42,4 +43,4 @@ class Delete(TransactionTestCase):
         )
         self.assertRedirects(response, reverse('users_list'))
         self.assertEqual(User.objects.all().count(), 2)
-        self.assertNotIn(unclefedor, User.objects.all())
+        self.assertNotIn('unclefedor', User.objects.all())
