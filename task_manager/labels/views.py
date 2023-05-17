@@ -6,6 +6,7 @@ from task_manager.mixins import AuthRequiredMixin, DeleteProtectionMixin
 from .models import Label
 from .forms import LabelForm
 
+
 # Create your views here.
 class LabelsListView(AuthRequiredMixin, ListView):
     template_name = 'labels/list.html'

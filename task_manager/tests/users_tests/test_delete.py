@@ -24,13 +24,12 @@ class Delete(TransactionTestCase):
         response = self.client.post(
             reverse(
                 'user_delete',
-                 kwargs={'pk': user1.id}
+                kwargs={'pk': user1.id}
             )
         )
         self.assertRedirects(response, reverse('users_list'))
         self.assertIn(user1, User.objects.all())
         self.assertEqual(User.objects.all().count(), 3)
-
 
     def test_delete(self):
         user1 = User.objects.all().first()

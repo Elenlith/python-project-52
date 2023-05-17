@@ -6,6 +6,7 @@ from task_manager.mixins import AuthRequiredMixin, DeleteProtectionMixin
 from .models import Status
 from .forms import StatusForm
 
+
 # Create your views here.
 class StatusesListView(AuthRequiredMixin, ListView):
     template_name = 'statuses/list.html'

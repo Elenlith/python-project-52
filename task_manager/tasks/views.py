@@ -1,11 +1,13 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.views.generic import ListView, CreateView,\
+    UpdateView, DeleteView, DetailView
 from django.utils.translation import gettext_lazy as _
 from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.mixins import AuthRequiredMixin, AuthorDeletionMixin
 from task_manager.users.models import User
 from .models import Task
 from .forms import TaskForm
+
 
 # Create your views here.
 class TasksListView(AuthRequiredMixin, ListView):

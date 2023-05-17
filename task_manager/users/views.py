@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
@@ -15,8 +14,8 @@ class UsersListView(ListView):
     context_object_name = 'users_list'
 
     def get_queryset(self):
-            model = User
-            return model.objects.all()
+        model = User
+        return model.objects.all()
 
 
 class UserCreateView(SuccessMessageMixin, CreateView):

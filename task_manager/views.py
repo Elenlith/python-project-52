@@ -20,14 +20,18 @@ class UserLoginView(SuccessMessageMixin, LoginView):
         'title': _('Login'),
         'button_text': _('Enter'),
     }
-    
+
     def form_valid(self, form):
         messages.info(self.request, _('You are logged in'))
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        messages.error(self.request, _('Please enter correct username and password. Both fields may be case sensitive'))
+        login_failure_eng_text = 'Please enter correct username and password. '\
+            'Both fields may be case sensitive'
+        login_failure_text = _(login_failure_eng_text)
+        messages.error(self.request, login_failure_text)
         return super().form_invalid(form)
+
 
 class UserLogoutView(LogoutView):
     next_page = reverse_lazy('home')
