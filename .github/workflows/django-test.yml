@@ -8,6 +8,9 @@ jobs:
   test:
     name: test django app
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9]
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
@@ -32,6 +35,5 @@ jobs:
       - uses: paambaati/codeclimate-action@v3.0.0
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.TEST_REPORTER_ID }}
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
       with:
         coverageCommand: make test-coverage
