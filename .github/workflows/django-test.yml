@@ -1,4 +1,4 @@
-name: Django CI
+name: django-test
 
 on:
   push:
@@ -30,6 +30,6 @@ jobs:
     - run: poetry install
     - uses: paambaati/codeclimate-action@v3.0.0
       env:
-        CC_TEST_REPORTER_ID: 99b9272657a2d54201d2f2ba3a79503c8153829b664da6318e2550261b7c46ed
+        CC_TEST_REPORTER_ID: 91a85e0400b096ce1a81e0256fe81fa29904edcc5c5ac8e4033d7da4b48adeca
       with:
-        coverageCommand: make coverage
+        coverageCommand: make test-coverage
