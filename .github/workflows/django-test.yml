@@ -8,15 +8,10 @@ jobs:
   test:
     name: test django app
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.8, 3.9]
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.8
       - run: pip install poetry
       - run: poetry install
       - run: make test
@@ -27,13 +22,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.8
       - run: pip install poetry
       - run: poetry install
       - uses: paambaati/codeclimate-action@v3.0.0
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.TEST_REPORTER_ID }}
-      with:
-        coverageCommand: make test-coverage
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.TEST_REPORTER_ID }}
+        with:
+          coverageCommand: make test-coverage
