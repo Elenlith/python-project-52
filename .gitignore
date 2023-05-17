@@ -7,3 +7,5 @@ __pycache__/
 *.pyc
 dist/
 db.sqlite3
+.coverage
+coverage.xml
