@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView,\
+from django.views.generic import CreateView,\
     UpdateView, DeleteView, DetailView
 from django.utils.translation import gettext_lazy as _
 from django.contrib.messages.views import SuccessMessageMixin
@@ -7,12 +7,15 @@ from task_manager.mixins import AuthRequiredMixin, AuthorDeletionMixin
 from task_manager.users.models import User
 from .models import Task
 from .forms import TaskForm
+from .filters import TaskFilter
+from django_filters.views import FilterView
 
 
 # Create your views here.
-class TasksListView(AuthRequiredMixin, ListView):
+class TasksListView(AuthRequiredMixin, FilterView):
     template_name = 'tasks/list.html'
     model = Task
+    filterset_class = TaskFilter
     context_object_name = 'tasks_list'
     extra_context = {
         'title': _('Tasks'),

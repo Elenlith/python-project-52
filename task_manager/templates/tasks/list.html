@@ -7,6 +7,15 @@
     <h1 class="my-4">{% trans 'Tasks' %}</h1>
 
     <a class="nav-link" href="{% url 'task_create' %}">{% trans 'Create task' %}</a>
+    
+    <div class="card mb-3">
+        <div class="card-body bg-light">
+            <form method="get">
+              {% bootstrap_form filter.form %}
+              {% bootstrap_button button_text button_type="submit" button_class="btn btn-primary" %}
+            </form>
+        </div>
+    </div>    
 
     <table class="table table-striped">
         <thead>
