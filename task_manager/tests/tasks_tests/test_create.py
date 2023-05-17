@@ -12,7 +12,7 @@ class Create(TestCase):
         response = self.client.get(reverse('task_create'))
         self.assertEqual(response.status_code, 302)
 
-    def test_create_task(self):
+    def test_create_with_login(self):
         user = User.objects.all().first()
         self.client.force_login(user=user)
         status = Status.objects.all().first()

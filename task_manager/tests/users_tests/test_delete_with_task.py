@@ -19,7 +19,7 @@ class Remove(TransactionTestCase):
         self.assertRedirects(response, reverse('users_list'))
         self.assertEqual(User.objects.all().count(), 2)
 
-    def test_delete_after_modify_task(self):
+    def test_delete_after_modifying_task(self):
         user1 = User.objects.all().first()
         user2 = User.objects.all().last()
         task = Task.objects.all().first()

@@ -1,19 +1,20 @@
 from task_manager.users.models import User
+from task_manager.statuses.models import Status
+from task_manager.tasks.models import Task
 from django.urls import reverse_lazy as reverse
 from django.test import TransactionTestCase
-from task_manager.tasks.models import Status, Task
 
 
 class UpdateTask(TransactionTestCase):
     fixtures = ['db_task.json']
 
-    def test_update_open_without_login(self):
+    def test_update_without_login(self):
         response = self.client.get(reverse('task_update', kwargs={'pk': 1}))
         self.assertEqual(response.status_code, 302)
         response = self.client.post(reverse('task_update', kwargs={'pk': 1}))
         self.assertEqual(response.status_code, 302)
 
-    def test_update_task(self):
+    def test_update_with_login(self):
         user = User.objects.all().first()
         self.client.force_login(user=user)
         response = self.client.get(reverse('task_update', kwargs={'pk': 1}))

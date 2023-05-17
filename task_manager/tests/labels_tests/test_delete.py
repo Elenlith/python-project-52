@@ -1,26 +1,26 @@
 from task_manager.users.models import User
-from task_manager.statuses.models import Status
+from task_manager.labels.models import Label
 from django.urls import reverse_lazy as reverse
 from django.test import TestCase
 
 
-class DeleteStatus(TestCase):
+class DeleteMark(TestCase):
     fixtures = [
-        'db_status.json',
+        'db_labels.json',
         'db.json',
     ]
 
     def test_delete_without_login(self):
-        response = self.client.get(reverse('status_delete', kwargs={'pk': 1}))
+        response = self.client.get(reverse('label_delete', kwargs={'pk': 3}))
         self.assertEqual(response.status_code, 302)
 
     def test_delete_with_login(self):
         user = User.objects.all().first()
         self.client.force_login(user=user)
-        response = self.client.get(reverse('status_delete', kwargs={'pk': 1}))
+        response = self.client.get(reverse('label_delete', kwargs={'pk': 3}))
         self.assertEqual(response.status_code, 200)
         response = self.client.post(
-            reverse('status_delete', kwargs={'pk': 1})
+            reverse('label_delete', kwargs={'pk': 3})
         )
-        statuses = Status.objects.all()
-        self.assertEqual(len(statuses), 2)
+        labels = Label.objects.all()
+        self.assertEqual(len(labels), 2)
