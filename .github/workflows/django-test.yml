@@ -9,27 +9,29 @@ jobs:
     name: test django app
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-python@v2
-      with:
-        python-version: '3.8'
-    - run: pip install poetry
-    - run: poetry install
-    - run: make test
-    - run: make lint
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install poetry
+      - run: poetry install
+      - run: make test
+      - run: make lint
   coverage:
     name: check coverage
     needs: [ test ]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-python@v2
-      with:
-        python-version: '3.8'
-    - run: pip install poetry
-    - run: poetry install
-    - uses: paambaati/codeclimate-action@v3.0.0
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install poetry
+      - run: poetry install
+      - uses: paambaati/codeclimate-action@v3.0.0
       env:
-        CC_TEST_REPORTER_ID: 91a85e0400b096ce1a81e0256fe81fa29904edcc5c5ac8e4033d7da4b48adeca
+        CC_TEST_REPORTER_ID: ${{ secrets.TEST_REPORTER_ID }}
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
       with:
         coverageCommand: make test-coverage
