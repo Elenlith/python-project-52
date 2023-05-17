@@ -13,11 +13,11 @@ FIXTURE_FILE = os.path.join(FIXTURE_DIR, 'user.json')
 TEST_USER = json.load(open(FIXTURE_FILE))
 
 
-class Modify(TransactionTestCase):
+class UpdateUser(TransactionTestCase):
     fixtures = ['db.json']
     username = TEST_USER.get('username')
 
-    def test_modify_only_logged(self):
+    def test_update_without_login(self):
         response = self.client.post(
             reverse(
                 'user_update',
@@ -27,7 +27,7 @@ class Modify(TransactionTestCase):
         )
         self.assertRedirects(response, reverse('login'))
 
-    def test_modify_redirect_after_logging(self):
+    def test_redirect_after_update(self):
         user = User.objects.all().first()
         self.client.force_login(user=user)
         response = self.client.post(

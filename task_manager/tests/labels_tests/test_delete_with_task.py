@@ -4,7 +4,7 @@ from django.urls import reverse_lazy as reverse
 from django.test import TransactionTestCase
 
 
-class DeleteMarkWithTask(TransactionTestCase):
+class DeleteLabelWithTask(TransactionTestCase):
     fixtures = ['db_task_with_label.json']
 
     def test_delete_with_task_bound(self):

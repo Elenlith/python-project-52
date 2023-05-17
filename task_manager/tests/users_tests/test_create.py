@@ -9,9 +9,9 @@ FIXTURE_DIR = os.path.join(
 )
 
 
-class CreateTest(TestCase):
+class CreateUser(TestCase):
 
-    def test_open_create_page(self):
+    def test_create(self):
         response = self.client.get(reverse('user_add'))
         self.assertEqual(response.status_code, 200)
 

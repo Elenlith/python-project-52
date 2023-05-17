@@ -4,7 +4,7 @@ from django.urls import reverse_lazy as reverse
 from django.test import TestCase
 
 
-class UpdateStatus(TestCase):
+class UpdateLabel(TestCase):
     fixtures = [
         'db_labels.json',
         'db.json',

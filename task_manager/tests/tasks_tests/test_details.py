@@ -4,7 +4,7 @@ from django.test import TransactionTestCase
 from task_manager.tasks.models import Task
 
 
-class List(TransactionTestCase):
+class SpecifyTask(TransactionTestCase):
     fixtures = ['db_task.json']
 
     def test_details_without_login(self):

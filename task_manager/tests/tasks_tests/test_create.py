@@ -5,7 +5,7 @@ from django.urls import reverse_lazy as reverse
 from django.test import TestCase
 
 
-class Create(TestCase):
+class CreateTask(TestCase):
     fixtures = ['db_task.json']
 
     def test_create_open_without_login(self):

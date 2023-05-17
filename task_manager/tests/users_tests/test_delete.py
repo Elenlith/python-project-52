@@ -3,7 +3,7 @@ from django.test import TransactionTestCase
 from task_manager.users.models import User
 
 
-class Delete(TransactionTestCase):
+class DeleteUser(TransactionTestCase):
     fixtures = ['db.json']
 
     def test_delete_without_login(self):

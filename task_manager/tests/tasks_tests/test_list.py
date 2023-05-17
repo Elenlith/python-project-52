@@ -4,7 +4,7 @@ from django.urls import reverse_lazy as reverse
 from django.test import TransactionTestCase
 
 
-class List(TransactionTestCase):
+class ListTasks(TransactionTestCase):
     fixtures = ['db_task.json']
 
     def test_list_without_login(self):
