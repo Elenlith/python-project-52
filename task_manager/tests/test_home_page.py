@@ -1,5 +1,12 @@
-from django.test import SimpleTestCase
+from django.test import SimpleTestCase, modify_settings
 
+
+modify_settings(
+    MIDDLEWARE={
+        'remove':
+            ['rollbar.contrib.django.middleware.RollbarNotifierMiddleware', ]
+    }
+)
 
 class SimpleTest(SimpleTestCase):
 

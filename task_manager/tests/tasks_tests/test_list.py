@@ -1,8 +1,15 @@
 from task_manager.users.models import User
 from task_manager.tasks.models import Task
 from django.urls import reverse_lazy as reverse
-from django.test import TransactionTestCase
+from django.test import TransactionTestCase, modify_settings
 
+
+modify_settings(
+    MIDDLEWARE={
+        'remove':
+            ['rollbar.contrib.django.middleware.RollbarNotifierMiddleware', ]
+    }
+)
 
 class ListTasks(TransactionTestCase):
     fixtures = ['db_task.json']

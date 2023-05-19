@@ -1,7 +1,14 @@
 from django.urls import reverse_lazy as reverse
-from django.test import TransactionTestCase
+from django.test import TransactionTestCase, modify_settings
 from task_manager.users.models import User
 
+
+modify_settings(
+    MIDDLEWARE={
+        'remove':
+            ['rollbar.contrib.django.middleware.RollbarNotifierMiddleware', ]
+    }
+)
 
 class DeleteUser(TransactionTestCase):
     fixtures = ['db.json']
