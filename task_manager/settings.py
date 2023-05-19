@@ -28,8 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'not_empty_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG_ENV = os.getenv('DEBUG')
-DEBUG = DEBUG_ENV if DEBUG_ENV else True
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['webserver',
                  '127.0.0.1',
