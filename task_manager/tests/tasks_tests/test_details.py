@@ -1,7 +1,7 @@
 from task_manager.users.models import User
 from django.urls import reverse_lazy as reverse
-from django.test import TransactionTestCase
-from task_manager.tasks.models import Task, modify_settings
+from django.test import TransactionTestCase, modify_settings
+from task_manager.tasks.models import Task
 
 
 modify_settings(
