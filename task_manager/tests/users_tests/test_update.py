@@ -1,6 +1,6 @@
 import json
 from django.urls import reverse_lazy as reverse
-from django.test import TransactionTestCase, modify_settings
+from django.test import TransactionTestCase
 import os
 from task_manager.users.models import User
 
@@ -12,13 +12,6 @@ FIXTURE_DIR = os.path.join(
 FIXTURE_FILE = os.path.join(FIXTURE_DIR, 'user.json')
 TEST_USER = json.load(open(FIXTURE_FILE))
 
-
-modify_settings(
-    MIDDLEWARE={
-        'remove':
-            ['rollbar.contrib.django.middleware.RollbarNotifierMiddleware', ]
-    }
-)
 
 class UpdateUser(TransactionTestCase):
     fixtures = ['db.json']

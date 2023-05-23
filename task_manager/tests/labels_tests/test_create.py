@@ -1,15 +1,8 @@
 from task_manager.users.models import User
 from task_manager.labels.models import Label
 from django.urls import reverse_lazy as reverse
-from django.test import TestCase, modify_settings
+from django.test import TestCase
 
-
-modify_settings(
-    MIDDLEWARE={
-        'remove':
-            ['rollbar.contrib.django.middleware.RollbarNotifierMiddleware', ]
-    }
-)
 
 class CreateLabel(TestCase):
     fixtures = [

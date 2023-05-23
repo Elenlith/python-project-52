@@ -1,6 +1,6 @@
 import json
 from django.urls import reverse_lazy as reverse
-from django.test import TestCase, modify_settings
+from django.test import TestCase
 import os
 from task_manager.users.models import User
 FIXTURE_DIR = os.path.join(
@@ -8,13 +8,6 @@ FIXTURE_DIR = os.path.join(
     '../fixtures'
 )
 
-
-modify_settings(
-    MIDDLEWARE={
-        'remove':
-            ['rollbar.contrib.django.middleware.RollbarNotifierMiddleware', ]
-    }
-)
 
 class CreateUser(TestCase):
 
