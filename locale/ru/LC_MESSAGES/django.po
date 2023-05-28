@@ -283,7 +283,7 @@ msgstr "Вход"
 
 #: task_manager/users/views.py:28
 msgid "Register"
-msgstr "Регистрация"
+msgstr "Зарегистрировать"
 
 #: task_manager/users/views.py:30
 msgid "User is successfully registered"
