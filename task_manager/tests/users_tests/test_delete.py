@@ -35,10 +35,10 @@ class DeleteUser(TransactionTestCase):
         user1 = User.objects.all().first()
         self.client.force_login(user=user1)
         response = self.client.post(
-             reverse(
-                 'user_delete',
-                 kwargs={'pk': user1.id}
-             )
+            reverse(
+                'user_delete',
+                kwargs={'pk': user1.id}
+            )
         )
         self.assertRedirects(response, reverse('users_list'))
         self.assertEqual(User.objects.all().count(), 2)
