@@ -12,7 +12,9 @@
         <div class="card-body bg-light">
             <form method="get">
               {% bootstrap_form filter.form %}
-              {% bootstrap_button button_text button_type="submit" button_class="btn btn-primary" %}
+              {% block button %}
+                  <button class="btn btn-primary" type="submit">{% trans "Show" %}</button>
+              {% endblock button %}
             </form>
         </div>
     </div>    

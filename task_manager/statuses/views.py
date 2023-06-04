@@ -3,8 +3,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.utils.translation import gettext_lazy as _
 from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.mixins import AuthRequiredMixin, DeleteProtectionMixin
-from .models import Status
-from .forms import StatusForm
+from task_manager.statuses.models import Status
+from task_manager.statuses.forms import StatusForm
 
 
 # Create your views here.
@@ -12,9 +12,6 @@ class StatusesListView(AuthRequiredMixin, ListView):
     template_name = 'statuses/list.html'
     model = Status
     context_object_name = 'statuses_list'
-    extra_context = {
-        'title': _('Statuses')
-    }
 
 
 class StatusCreateView(AuthRequiredMixin, SuccessMessageMixin, CreateView):
@@ -50,7 +47,3 @@ class StatusDeleteView(AuthRequiredMixin, DeleteProtectionMixin,
     deny_delete_message = _('It is not possible to delete a status '
                             'because it is in use')
     deny_delete_url = reverse_lazy('statuses_list')
-    extra_context = {
-        'title': _('Delete status'),
-        'button_text': _('Yes, delete'),
-    }

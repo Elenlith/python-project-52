@@ -3,8 +3,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.utils.translation import gettext_lazy as _
 from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.mixins import AuthRequiredMixin, DeleteProtectionMixin
-from .models import Label
-from .forms import LabelForm
+from task_manager.labels.models import Label
+from task_manager.labels.forms import LabelForm
 
 
 # Create your views here.
@@ -12,9 +12,6 @@ class LabelsListView(AuthRequiredMixin, ListView):
     template_name = 'labels/list.html'
     model = Label
     context_object_name = 'labels_list'
-    extra_context = {
-        'title': _('Labels')
-    }
 
 
 class LabelCreateView(AuthRequiredMixin, SuccessMessageMixin, CreateView):
@@ -50,7 +47,3 @@ class LabelDeleteView(AuthRequiredMixin, DeleteProtectionMixin,
     deny_delete_message = _('It is not possible to delete a label '
                             'because it is in use')
     deny_delete_url = reverse_lazy('labels_list')
-    extra_context = {
-        'title': _('Delete label'),
-        'button_text': _('Yes, delete'),
-    }

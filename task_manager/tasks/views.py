@@ -4,10 +4,9 @@ from django.views.generic import CreateView,\
 from django.utils.translation import gettext_lazy as _
 from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.mixins import AuthRequiredMixin, AuthorDeletionMixin
-from task_manager.users.models import User
-from .models import Task
-from .forms import TaskForm
-from .filters import TaskFilter
+from task_manager.tasks.models import Task
+from task_manager.tasks.forms import TaskForm
+from task_manager.tasks.filters import TaskFilter
 from django_filters.views import FilterView
 
 
@@ -17,19 +16,12 @@ class TasksListView(AuthRequiredMixin, FilterView):
     model = Task
     filterset_class = TaskFilter
     context_object_name = 'tasks_list'
-    extra_context = {
-        'title': _('Tasks'),
-        'button_text': _('Show'),
-    }
 
 
 class TaskDetailsView(AuthRequiredMixin, DetailView):
     template_name = 'tasks/details.html'
     model = Task
     context_object_name = 'task'
-    extra_context = {
-        'title': _('Task preview')
-    }
 
 
 class TaskCreateView(AuthRequiredMixin, SuccessMessageMixin, CreateView):
@@ -47,8 +39,7 @@ class TaskCreateView(AuthRequiredMixin, SuccessMessageMixin, CreateView):
         """
         Set current user as the task's author.
         """
-        user = self.request.user
-        form.instance.author = User.objects.get(pk=user.pk)
+        form.instance.author = self.request.user
         return super().form_valid(form)
 
 
@@ -70,9 +61,5 @@ class TaskDeleteView(AuthRequiredMixin, AuthorDeletionMixin,
     model = Task
     success_url = reverse_lazy('tasks_list')
     success_message = _('Task successfully deleted')
-    author_message = _('The task can be deleted only by its author')
-    author_url = reverse_lazy('tasks_list')
-    extra_context = {
-        'title': _('Delete task'),
-        'button_text': _('Yes, delete'),
-    }
+    permission_denied_message = _('The task can be deleted only by its author')
+    permission_denied_url = reverse_lazy('tasks_list')

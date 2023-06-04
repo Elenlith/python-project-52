@@ -1,8 +1,8 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from .models import User
-from .forms import UserForm
+from task_manager.users.models import User
+from task_manager.users.forms import UserForm
 from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.mixins import AuthRequiredMixin,\
     UserPermissionMixin, DeleteProtectionMixin
@@ -10,12 +10,9 @@ from task_manager.mixins import AuthRequiredMixin,\
 
 # Create your views here.
 class UsersListView(ListView):
-    template_name = "users/list.html"
+    template_name = 'users/list.html'
+    model = User
     context_object_name = 'users_list'
-
-    def get_queryset(self):
-        model = User
-        return model.objects.all()
 
 
 class UserCreateView(SuccessMessageMixin, CreateView):
@@ -55,7 +52,3 @@ class UserDeleteView(AuthRequiredMixin, UserPermissionMixin,
     permission_url = reverse_lazy('users_list')
     deny_delete_message = _('Unable to delete a user because he is being used')
     deny_delete_url = reverse_lazy('users_list')
-    extra_context = {
-        'title': _('Delete user'),
-        'button_text': _('Yes, delete'),
-    }

@@ -1,6 +1,5 @@
 from django.urls import path
-
-from .views import TasksListView, TaskDetailsView, \
+from task_manager.tasks.views import TasksListView, TaskDetailsView, \
     TaskCreateView, TaskUpdateView, TaskDeleteView
 
 
