@@ -30,15 +30,15 @@ class UserPermissionMixin(UserPassesTestMixin):
 
 
 class DeleteProtectionMixin:
-    protected_message = None
-    protected_url = None
+    deny_delete_message = None
+    deny_delete_url = None
 
     def post(self, request, *args, **kwargs):
         try:
             return super().post(request, *args, **kwargs)
         except ProtectedError:
-            messages.error(request, self.protected_message)
-            return redirect(self.protected_url)
+            messages.error(request, self.deny_delete_message)
+            return redirect(self.deny_delete_url)
 
 
 class AuthorDeletionMixin(UserPassesTestMixin):

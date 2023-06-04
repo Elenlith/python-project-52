@@ -47,9 +47,9 @@ class LabelDeleteView(AuthRequiredMixin, DeleteProtectionMixin,
     model = Label
     success_url = reverse_lazy('labels_list')
     success_message = _('Label successfully deleted')
-    protected_message = _('It is not possible to delete a label '
-                          'because it is in use')
-    protected_url = reverse_lazy('labels_list')
+    deny_delete_message = _('It is not possible to delete a label '
+                            'because it is in use')
+    deny_delete_url = reverse_lazy('labels_list')
     extra_context = {
         'title': _('Delete label'),
         'button_text': _('Yes, delete'),

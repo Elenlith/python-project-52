@@ -53,8 +53,8 @@ class UserDeleteView(AuthRequiredMixin, UserPermissionMixin,
     success_message = _('User is successfully deleted')
     permission_message = _('You have no rights to change another user.')
     permission_url = reverse_lazy('users_list')
-    protected_message = _('Unable to delete a user because he is being used')
-    protected_url = reverse_lazy('users_list')
+    deny_delete_message = _('Unable to delete a user because he is being used')
+    deny_delete_url = reverse_lazy('users_list')
     extra_context = {
         'title': _('Delete user'),
         'button_text': _('Yes, delete'),

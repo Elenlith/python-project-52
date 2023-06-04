@@ -47,9 +47,9 @@ class StatusDeleteView(AuthRequiredMixin, DeleteProtectionMixin,
     model = Status
     success_url = reverse_lazy('statuses_list')
     success_message = _('Status successfully deleted')
-    protected_message = _('It is not possible to delete a status '
-                          'because it is in use')
-    protected_url = reverse_lazy('statuses_list')
+    deny_delete_message = _('It is not possible to delete a status '
+                            'because it is in use')
+    deny_delete_url = reverse_lazy('statuses_list')
     extra_context = {
         'title': _('Delete status'),
         'button_text': _('Yes, delete'),
