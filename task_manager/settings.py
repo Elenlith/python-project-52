@@ -158,3 +158,10 @@ ROLLBAR = {
     'code_version': '1.0',
     'root': BASE_DIR,
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.railway.app',
+    'https://127.0.0.1',
+    'https://localhost',
+    'https://0.0.0.0',
+]
