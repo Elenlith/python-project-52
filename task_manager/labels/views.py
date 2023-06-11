@@ -20,22 +20,14 @@ class LabelCreateView(AuthRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = LabelForm
     success_url = reverse_lazy('labels_list')
     success_message = _('Label successfully created')
-    extra_context = {
-        'title': _('Create label'),
-        'button_text': _('Create'),
-    }
 
 
 class LabelUpdateView(AuthRequiredMixin, SuccessMessageMixin, UpdateView):
-    template_name = 'labels/create.html'
+    template_name = 'labels/update.html'
     model = Label
     form_class = LabelForm
     success_url = reverse_lazy('labels_list')
     success_message = _('Label successfully changed')
-    extra_context = {
-        'title': _('Change label'),
-        'button_text': _('Change'),
-    }
 
 
 class LabelDeleteView(AuthRequiredMixin, DeleteProtectionMixin,

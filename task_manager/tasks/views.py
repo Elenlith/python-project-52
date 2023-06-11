@@ -30,10 +30,6 @@ class TaskCreateView(AuthRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = TaskForm
     success_url = reverse_lazy('tasks_list')
     success_message = _('Task successfully created')
-    extra_context = {
-        'title': _('Create task'),
-        'button_text': _('Create'),
-    }
 
     def form_valid(self, form):
         """
@@ -44,15 +40,11 @@ class TaskCreateView(AuthRequiredMixin, SuccessMessageMixin, CreateView):
 
 
 class TaskUpdateView(AuthRequiredMixin, SuccessMessageMixin, UpdateView):
-    template_name = 'tasks/create.html'
+    template_name = 'tasks/update.html'
     model = Task
     form_class = TaskForm
     success_url = reverse_lazy('tasks_list')
     success_message = _('Task successfully changed')
-    extra_context = {
-        'title': _('Task change'),
-        'button_text': _('Change'),
-    }
 
 
 class TaskDeleteView(AuthRequiredMixin, AuthorDeletionMixin,
